@@ -14,6 +14,8 @@
 
 - [DB 생성 및 사용자 생성](https://github.com/gunkim/TIL/blob/master/mysql/DB%20%EC%83%9D%EC%84%B1%20%EB%B0%8F%20%EC%82%AC%EC%9A%A9%EC%9E%90%20%EC%83%9D%EC%84%B1.md)
 
+- [우분투 Mysql 외부 접속 허용](https://github.com/gunkim/TIL/blob/master/mysql/%EC%9A%B0%EB%B6%84%ED%88%AC%20Mysql%20%EC%99%B8%EB%B6%80%20%EC%A0%91%EC%86%8D%20%ED%97%88%EC%9A%A9.md)
+
 # Java
 - [자바 음수 값이 들어가는 이유](https://github.com/gunkim/TIL/blob/master/java/byte%20%EC%9E%90%EB%A3%8C%ED%98%95%20%EC%9D%8C%EC%88%98%20%EA%B0%92%EC%9D%B4%20%EB%93%A4%EC%96%B4%EA%B0%80%EB%8A%94%20%EC%9D%B4%EC%9C%A0.md)
 
