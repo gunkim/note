@@ -14,3 +14,7 @@
 
 # Java
 - [자바 음수 값이 들어가는 이유](https://github.com/gunkim/TIL/blob/master/java/byte%20%EC%9E%90%EB%A3%8C%ED%98%95%20%EC%9D%8C%EC%88%98%20%EA%B0%92%EC%9D%B4%20%EB%93%A4%EC%96%B4%EA%B0%80%EB%8A%94%20%EC%9D%B4%EC%9C%A0.md)
+
+# Oop
+
+- [객체지향 5 원칙(Solid)](https://github.com/gunkim/TIL/blob/master/oop/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%205%20%EC%9B%90%EC%B9%99.md)
