@@ -33,3 +33,15 @@ sudo systemctl enable mysql
 ```sh
 sudo ufw allow mysql
 ```
+
+# Mysql 접속
+
+```sh
+sudo mysql -u root -p
+```
+
+or
+
+```sh
+sudo /usr/bin/mysql -u root -p
+```
