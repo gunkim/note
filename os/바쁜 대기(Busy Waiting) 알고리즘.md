@@ -33,7 +33,7 @@ wait queue에 넣는 비용 + Context Switching 비용이 든다.
 
 # 자바로 구현한 예제
 
-어떤 식으로 구현할까 궁금해서 찾아봤는데, [StackOverFlow](https://stackoverflow.com/questions/24948791/what-is-fast-wait-notify-or-busy-wait-in-java)에서 찾을 수 있었다. 쓰레드 내에 플래그 변수가 flag가 false가 될 때까지 계속 반복하는 식으로 구현하는 것 같다.
+어떤 식으로 구현할까 궁금해서 찾아봤는데, [StackOverFlow](https://stackoverflow.com/questions/24948791/what-is-fast-wait-notify-or-busy-wait-in-java)에서 찾을 수 있었다. 쓰레드 내에 플래그 변수가 false가 될 때까지 계속 반복하는 식으로 구현하는 것 같다.
 
 ## Busy Waiting
 
