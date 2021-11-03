@@ -15,7 +15,7 @@
 - 자원의 권한을 얻기 위해 기다리는 시간을 `wait queue`에 실행 중인 Thread 정보를 담고 다른 Thread에게 CPU를 양보하는 것을 의미
 - 커널은 권한 이벤트가 발생하면 `wait queue`에 담긴 Thread를 깨워 CPU를 부여
 
-Busy Wating는 권한을 얻을 때까지 계속 확인하는 반면 Sleeping은 말 그대로 원하는 자원을 얻기 위해 그냥 계속 기다리는 방법이다.
+Busy Wating는 권한을 얻을 때까지 계속 확인하는 반면 Sleeping은 말 그대로 원하는 자원을 얻을 때까지 잠들어 있는 방법이다.
 
 ## Sleeping은 어떨 때 사용할까?
 
