@@ -22,3 +22,7 @@
 # Oop
 
 - [객체지향 5 원칙(Solid)](https://github.com/gunkim/TIL/blob/master/oop/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%205%20%EC%9B%90%EC%B9%99.md)
+
+# OS
+
+- [바쁜 대기(Busy Waiting) 알고리즘](https://github.com/gunkim/TIL/blob/master/os/%EB%B0%94%EC%81%9C%20%EB%8C%80%EA%B8%B0(Busy%20Waiting)%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
