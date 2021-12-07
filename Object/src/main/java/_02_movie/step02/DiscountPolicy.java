@@ -1,5 +1,5 @@
 package _02_movie.step02;
 
 public interface DiscountPolicy {
-    Money getDiscountAmount(Screening screening);
+    Money calculateDiscountAmount(Screening screening);
 }
