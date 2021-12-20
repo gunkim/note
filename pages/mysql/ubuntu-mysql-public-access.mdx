@@ -2,7 +2,7 @@
 
 ### 1. mysqld.cnf 열기
 
-```
+```sh
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 
@@ -10,7 +10,7 @@ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 
 bind-address 내용을 찾아 수정해준다.
 
-```
+```sh
 bind-address = 127.0.0.1 → bind-address = 0.0.0.0
 ```
 
