@@ -1,7 +1,7 @@
 export default {
   github: 'https://github.com/gunkim',
   docsRepositoryBase: 'https://github.com/shuding/nextra/blob/master',
-  titleSuffix: ' – Nextra',
+  titleSuffix: ' – TGL',
   logo: (
     <>
       <span className="mr-2 font-extrabold hidden md:inline">
