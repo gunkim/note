@@ -1,3 +1,8 @@
 {
-  "session": "세션 죽이기"
+  "session": "세션 죽이기",
+  "db-and-user-create": "DB & User 계정 생성",
+  "ubuntu-mysql-install": "우분투 Mysql 설치",
+  "ubuntu-mysql-delete": "우분투 Mysql 삭제",
+  "ubuntu-mysql-public-access": "우분투 Mysql 외부 접속 허용",
+  "column-add": "특정 컬럼 앞/뒤에 컬럼 추가"
 }
