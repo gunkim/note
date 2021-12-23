@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="관람객 테스트" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-08T00:04:21" hostname="AWA-GUN" time="0.043">
-  <properties/>
-  <testcase name="test()" classname="_01_ticket.AudienceTests" time="0.043"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
