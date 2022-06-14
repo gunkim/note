@@ -19,3 +19,6 @@
 - [Ubuntu 물리 Mysql 삭제하는 법](/mysql/ubuntu-mysql-delete.md)
 - [Ubuntu 물리 Mysql 설치하는 법](/mysql/ubuntu-mysql-install.md)
 - [Mysql 퍼블릭 접근 허용하는 법](/mysql/ubuntu-mysql-public-access.md)
+
+### 운영체제
+- [바쁜 대기 알고리즘(Busy Waiting)](/os/busywaiting.md)
