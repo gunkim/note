@@ -22,3 +22,6 @@
 
 ### 운영체제
 - [바쁜 대기 알고리즘(Busy Waiting)](/os/busywaiting.md)
+
+### Git
+- [403 에러 해결](/git/github-403-error.md)
