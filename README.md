@@ -10,7 +10,8 @@
 - [Unsigned Char 다루는 방법](/java/unsigned-char.md)
 
 ### Kotlin
-- [Kotlin에서 원시타입 관리 전략](/kotlin/primitive.md)
+- [원시타입 관리 전략](/kotlin/primitive.md)
+- [컨벤션](/kotlin/convention.md)
 
 ### 운영체제
 - [바쁜 대기 알고리즘(Busy Waiting)](/os/busywaiting.md)
