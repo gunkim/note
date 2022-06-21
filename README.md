@@ -12,6 +12,7 @@
 ### Kotlin
 - [원시타입 관리 전략](/kotlin/primitive.md)
 - [컨벤션](/kotlin/convention.md)
+- [Pair와 Triple](/kotlin/pair-triple.md)
 
 ### Functional Programming
 - [절차지향 프로그래밍 vs 함수형 프로그래밍 차이?](/functional-programming/why-sequence.md)
