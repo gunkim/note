@@ -23,6 +23,9 @@
 ### 운영체제
 - [바쁜 대기 알고리즘(Busy Waiting)](/os/busywaiting.md)
 
+### 반효경 KOCW 운영체제
+- [Introduction to Operating Systems](/os/kocw/introduction-to-operating-systems.md)
+
 ### Docker
 - [M1 Mac Docker 이미지 받는 법](/docker/m1-mac-docker.md)
 
