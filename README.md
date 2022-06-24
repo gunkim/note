@@ -3,6 +3,8 @@
 
 ## 작성 규칙
 1. 폴더와 파일명은 영문으로 작성한다.
+2. 부담을 갖지 말고 간단하게라도 작성한다.
+3. 미완성된 내용이라면 꼭 보완해서 완성한다.
 
 ## 목차
 
@@ -19,6 +21,7 @@
 
 ### Design Pattern
 - [험블 객체 패턴](/design-pattern/humble-object-pattern.md)
+- [프록시 패턴](/design-pattern/proxy-pattern.md)
 
 ### 운영체제
 - [바쁜 대기 알고리즘(Busy Waiting)](/os/busywaiting.md)
