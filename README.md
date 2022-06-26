@@ -42,3 +42,4 @@
 ### Git
 - [403 에러 해결](/git/github-403-error.md)
 - [Reset 옵션](/git/reset.md)
+- [Gitmoji](/git/gitmoji-setting.md)
