@@ -14,5 +14,5 @@
 * [코틀린](kotlin/README.md)
   * [코틀린 컨벤션](kotlin/convention.md)
   * [Kotlin의 원시/참조 타입 전략](kotlin/primitive.md)
-* [운영체제](oop/README.md)
+* [객체지향 프로그래밍](oop/README.md)
   * [객체지향 설계 원칙(SOLID)](oop/solid.md)
