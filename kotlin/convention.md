@@ -9,7 +9,7 @@
 
 ### 예시 코드
 
-```kt
+```kotlin
 class Person {
     // 속성
     private var name: String? = null
