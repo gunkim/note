@@ -16,3 +16,5 @@
   * [Kotlin의 원시/참조 타입 전략](kotlin/primitive.md)
 * [객체지향 프로그래밍](oop/README.md)
   * [객체지향 설계 원칙(SOLID)](oop/solid.md)
+* [컴퓨터 구조](computer-structure/README.md)
+  * [문자집합과 인코딩](computer-structure/character-set.md)
