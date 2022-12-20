@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1f967c6-710d-4b19-b4f6-7a416c29b827" name="변경" comment="[쉽게 배우는 운영체제] 1-1장 정리 완료">
+      <change beforePath="$PROJECT_DIR$/os/book/운영체제-소개.md" beforeDir="false" afterPath="$PROJECT_DIR$/os/book/운영체제-소개.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="editable-svg" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AvytzyWshgdjcHQZUmPWPT6SF0" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/git/img" />
+      <recent name="$PROJECT_DIR$/git/" />
+      <recent name="$PROJECT_DIR$/git/gitmoji-setting.png" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="b1f967c6-710d-4b19-b4f6-7a416c29b827" name="변경" comment="" />
+      <created>1655904574979</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655904574979</updated>
+      <workItem from="1655904578266" duration="7000" />
+      <workItem from="1655904594144" duration="76000" />
+      <workItem from="1655908394561" duration="568000" />
+      <workItem from="1655911574522" duration="4000" />
+      <workItem from="1655995345508" duration="1237000" />
+      <workItem from="1656082306744" duration="260000" />
+      <workItem from="1656094686996" duration="8259000" />
+      <workItem from="1656160539750" duration="3751000" />
+      <workItem from="1656213996299" duration="2062000" />
+      <workItem from="1656331232314" duration="622000" />
+      <workItem from="1656331972333" duration="1027000" />
+      <workItem from="1656333009529" duration="5780000" />
+      <workItem from="1656599542572" duration="682000" />
+      <workItem from="1656682115436" duration="1607000" />
+      <workItem from="1658242441322" duration="99000" />
+      <workItem from="1658242713475" duration="610000" />
+      <workItem from="1658281351896" duration="6000" />
+      <workItem from="1658328476534" duration="4632000" />
+      <workItem from="1658370597433" duration="25000" />
+      <workItem from="1658567504947" duration="5566000" />
+    </task>
+    <task id="LOCAL-00001" summary="kocw 반효경 교수님 운영체제 1강">
+      <created>1655908658609</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1655908658609</updated>
+    </task>
+    <task id="LOCAL-00002" summary="곧 스터디를 통해 진행할 예정이므로 KOCW 항목 삭제">
+      <created>1655995376853</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655995376853</updated>
+    </task>
+    <task id="LOCAL-00003" summary="KOCW 운영체제 스터디 2강 문서">
+      <created>1656599617986</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656599617986</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[쉽게 배우는 운영체제] 1장 정리중">
+      <created>1658328726726</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658328726726</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[쉽게 배우는 운영체제] 1-1장 정리 완료">
+      <created>1658332456088</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1658332456088</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[쉽게 배우는 운영체제] 1-1장 정리 완료">
+      <created>1658332509166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658332509166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="kocw 반효경 교수님 운영체제 1강" />
+    <MESSAGE value="곧 스터디를 통해 진행할 예정이므로 KOCW 항목 삭제" />
+    <MESSAGE value="KOCW 운영체제 스터디 2강 문서" />
+    <MESSAGE value="[쉽게 배우는 운영체제] 1장 정리중" />
+    <MESSAGE value="[쉽게 배우는 운영체제] 1-1장 정리 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="[쉽게 배우는 운영체제] 1-1장 정리 완료" />
+  </component>
+</project>
