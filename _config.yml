@@ -16,7 +16,7 @@
 title: Gun TIL
 description: A Jekyll theme for documentation
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://just-the-docs.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://gunkim.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"
@@ -64,8 +64,10 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
-  "Just the Docs on GitHub":
-    - "//github.com/just-the-docs/just-the-docs"
+  "Gunlog":
+    - "//gunlog.dev"
+  "Github":
+    - "//github.com/gunkim"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
