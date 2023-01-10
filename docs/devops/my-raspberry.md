@@ -15,7 +15,7 @@ parent: DevOps
 
 과하네...?
 
-## 운영체제 설치
+## 운영체제(Ubuntu 22.04.1 LTS) 설치
 
 1. [Raspberry Pi OS Installer 설치](https://www.raspberrypi.com/software/)
 2. 운영체제 종류 선택 후 완료
