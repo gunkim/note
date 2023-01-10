@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 집에서 쓰는 장난감 라즈베리파이 세팅
+title: 문자 집합(Character Set)
 parent: Computer Science
 ---
 
