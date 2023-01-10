@@ -1,6 +1,6 @@
 ---
 layout: default
-title: design-pattern
+title: Design Pattern
 nav_order: 2
 has_children: true
 permalink: docs/design-pattern
