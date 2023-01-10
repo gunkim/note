@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Proxy Pattern
-parent: design-pattern
+parent: Design Pattern
 ---
 
 # Proxy Pattern
