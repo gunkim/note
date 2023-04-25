@@ -1,9 +1,3 @@
----
-layout: default
-title: 문자 집합(Character Set)
-parent: Computer Science
----
-
 # 문자 집합(Character Set)
 
 컴퓨터가 인식하고 표현할 수 있는 문자의 모음

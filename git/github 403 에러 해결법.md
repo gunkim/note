@@ -1,9 +1,3 @@
----
-layout: default
-title: github 403에러 해결 방법
-parent: Git
----
-
 # github 403에러
 
 ## 문제 상황

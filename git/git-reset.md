@@ -1,9 +1,3 @@
----
-layout: default
-title: Git reset 정리
-parent: Git
----
-
 # Git Reset 옵션
 
 ```git
