@@ -25,13 +25,23 @@ JVM 상에서 Class 파일들을 로딩시키고, 로딩된 Class 파일들은 E
 
 기본적으로 클래스 로더는 관심사에 따라 3가지로 분류되며 각 클래스 로더는 부모-자식 관계를 갖는다.
 
-클래스 로더는 위임 모델을 따르며 클래스를 로드하기 위해 클래스 로더 인스턴스는 상위 클래스 로더에 위임한다. 즉 A라는 애플리케이션 클래스를 로드한다고 가정했을 때 `System Class Loader`는 `Extension Class Loader`에게 위임하고, `Extension Class Loader`는 다시 `Bootstrap Class Loader`로 위임한다. 상위 클래스에서 클래스 로드에 실패할 경우 마지막에 `System Class Loader`가 클래스 로드를 시도한다. 이 때도 찾지 못할 경우 `ClassNotFoundException`가 발생한다.
-
 ![jvm](/java/img/class%20loader.png)
 
 - Bootstrap Class Loader: JDK 내부 클래스, 일반적으로 $JAVA_HOME/jre/lib 디렉토리 에 있는 rt.jar 및 기타 핵심 라이브러리를 로드한다.
 - Extension Class Loader: 플랫폼에서 실행 중인 모든 애플리케이션에서 사용할 수 있도록 표준 핵심 Java 클래스의 확장 로드를 처리한다.
 - System Class Loader: 모든 애플리케이션 레벨 클래스를 JVM으로 로드한다. 클래스 경로 환경 변수, -classpath 또는 -cp 명령줄 옵션 에 있는 파일을 로드한다.
+
+### 클래스를 로드하는 방법
+
+클래스 로더는 위임 모델을 따르며 클래스를 로드하기 위해 클래스 로더 인스턴스는 상위 클래스 로더에 위임한다. 
+
+![jvm](/java/img/class%20loader%20process.png)
+
+즉 A라는 애플리케이션 클래스를 로드한다고 가정했을 때 플로우는 다음과 같다.
+1. `System Class Loader`는 `Extension Class Loader`에게 위임한다.
+2. `Extension Class Loader`는 다시 `Bootstrap Class Loader`로 위임한다.
+3. 상위 클래스에서 클래스 로드에 실패할 경우 마지막에 `System Class Loader`가 클래스 로드를 시도한다. 
+4. 3번까지 시도했을 때 찾지 못한 경우 `ClassNotFoundException`가 발생한다.
 
 ## 참고
 - JVM Performance Optimizing 성능 분석 사례
