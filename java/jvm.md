@@ -1,6 +1,6 @@
 # JVM(Java Virtual Machine)
 
-Java 프로그램은 JVM(Java Virtual Machine)에서 실행됩니다. JVM은 Java 프로그램을 실행하기 위한 가상의 컴퓨터입니다. JVM은 Java 언어의 특징인 "Write once, run anywhere"를 실현하기 위해 사용됩니다. 즉, Java 프로그램은 특정 운영체제나 하드웨어에 종속되지 않고, JVM이 설치된 어떤 시스템에서도 동일하게 실행될 수 있습니다.
+Java 프로그램은 JVM(Java Virtual Machine)에서 실행됩니다. JVM은 Java 프로그램을 실행하기 위한 가상의 컴퓨터입니다. JVM은 Java 언어의 특징인 `Write once, run anywhere`를 실현하기 위해 사용됩니다. 즉, Java 프로그램은 특정 운영체제나 하드웨어에 종속되지 않고, JVM이 설치된 어떤 시스템에서도 동일하게 실행될 수 있습니다.
 
 ## Java 프로그램 수행 과정
 
