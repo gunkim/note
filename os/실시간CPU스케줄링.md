@@ -83,6 +83,4 @@ POSIX API는 `pthread_attr_getschedpolicy`와 `pthread_attr_setschedpolicy`라�
 `pthread_attr_setschedpolicy` 함수는 스레드 속성 집합과 새로운 스케줄링 정책을 인자로 받아 설정한다. 이 함수들은 SCHED_FIFO, SCHED_RR, SCHED_OTHER와 같은 상수를 사용하여 특정 스케줄링 정책을 나타내며 성공 시 0을, 실패 시 0이 아닌 값을 반환한다. 
 
 
-이 API를 사용해서 현재 스케줄링 정책을 조회하고 SCHED_FIFO 정책으로 변경하는 POSIX Pthread 프로그램 예제
-
-<script src="https://gist.github.com/gunkim/54a9a72398d6fef6cec41040128a0521.js"></script>
+[이 API를 사용해서 현재 스케줄링 정책을 조회하고 SCHED_FIFO 정책으로 변경하는 POSIX Pthread 프로그램 예제](https://gist.github.com/gunkim/54a9a72398d6fef6cec41040128a0521)
