@@ -3,4 +3,9 @@
 전공 지식에 대한 이해도를 더 깊게 가져가기 위한 고민이 담겨 있는 곳입니다.
 
 ## 과목
-- [운영체제](os)
+
+* [운영체제](os/)
+* [Computer Science](computer-science/)
+* [Mysql](mysql/)
+* [Git](git/)
+* [Java](java/)
