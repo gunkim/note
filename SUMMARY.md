@@ -13,6 +13,8 @@
 * [Java](java/README.md)
   * [JVM(Java Virtual Machine)](java/jvm.md)
   * [JIT(Just In Time) 컴파일러](java/jit-just-in-time.md)
+  * [JVM 메모리 구조](java/jvm-1.md)
+  * [G1(Gabage First) GC 알고리즘](java/g1-gabage-first-gc.md)
 * [Mysql](mysql/README.md)
   * [사용자 계정](<mysql/사용자 계정.md>)
   * [실행 계획 요소](<mysql/실행 계획 보는 법.md>)

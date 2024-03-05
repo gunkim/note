@@ -4,7 +4,7 @@
 
 바이트코드 인터프리터가 가상화한 스택 머신에서 명령어를 실행하며 시작된다. **JIT(Just In Time) 컴파일**은 Runtime에 동적으로 진행되는 컴파일이라고 해서 **동적 컴파일**이라고도 한다.
 
-<img src="../.gitbook/assets/file.excalidraw (1).svg" alt="" class="gitbook-drawing">
+<img src="../.gitbook/assets/file.excalidraw (1) (1).svg" alt="" class="gitbook-drawing">
 
 **인터프리팅 방식**은 **매번 한줄한줄 해석**해 실행해야 하는데, 이 때 중복된 코드를 매번 해석하는 작업은 **비효율적**이다.
 
