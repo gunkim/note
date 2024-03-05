@@ -1,5 +1,7 @@
 # JIT(Just In Time) 컴파일러
 
+> JIT 컴파일러는 자바 컴파일러보다 더 다양한 최적화를 할 수 있다.
+
 바이트코드 인터프리터가 가상화한 스택 머신에서 명령어를 실행하며 시작된다. **JIT(Just In Time) 컴파일**은 Runtime에 동적으로 진행되는 컴파일이라고 해서 **동적 컴파일**이라고도 한다.
 
 <img src="../.gitbook/assets/file.excalidraw (1).svg" alt="" class="gitbook-drawing">
