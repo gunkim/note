@@ -25,3 +25,5 @@
   * [인터럽트](os/인터럽트.md)
   * [컴퓨터 시스템의 구성](os/컴퓨터시스템의구성.md)
   * [Process Synchronization(프로세스 동기화)](os/프로세스동기화.md)
+* [Memo](memo/README.md)
+  * [Mac Java 멀티 버전 세팅](memo/mac-java.md)
