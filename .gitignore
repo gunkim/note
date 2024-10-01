@@ -1,1 +1,8 @@
+# Jetbrains IDE
 .idea
+
+# Mac
+.DS_Store
+
+# Obsidian
+.obsidian/**
