@@ -1,11 +1,2 @@
-# 컴퓨터 공학(Computer Science & Engineering)
-
-전공 지식에 대한 이해도를 더 깊게 가져가기 위한 고민이 담겨 있는 곳입니다.
-
-## 과목
-
-* [운영체제](os/)
-* [Computer Science](computer-science/)
-* [Mysql](mysql/)
-* [Git](git/)
-* [Java](java/)
+# 개인 노트
+정제하기 전의 지식들을 모아놓는 개인적인 용도의 노트입니다.
