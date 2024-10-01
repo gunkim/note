@@ -1,5 +1,3 @@
-# Mac Java 멀티 버전 세팅
-
 ### 필요한 jdk 버전 설치
 
 추가 버전에 대한 패키지 명은 [이곳](https://github.com/mdogan/homebrew-zulu?tab=readme-ov-file)에서 확인
