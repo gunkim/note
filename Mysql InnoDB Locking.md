@@ -41,18 +41,15 @@ RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
 
 예를 들어, `SELECT c1 FROM t WHERE c1 BETWEEN 10 AND 20 FOR UPDATE;` 쿼리를 실행하면, 다른 트랜잭션이 열 `t.c1`에 값 15를 삽입하지 못하게 된다.
 
-**Gap Locking**은 Unique Index를 사용해 단일 레코드를 조회하는 쿼리에는 필요하지 않지만, 다중 레코드를 조회하는 경우에 발생한다. 예를 들어, `id` 열이 **Unique Index**를 가지고 있다면 `SELECT * FROM child WHERE id = 100;` 쿼리는 `id` 값이 100인 레코드에 대한 **Record Lock**만 사용하며, 다른 트랜잭션이 `id`가 100보다 작은 값(예: 99)으로 새로운 레코드를 삽입하는 것은 허용된다.
+**Gap Locking**은 Unique Index를 사용하는 단일 레코드 조회 시 필요하지 않으며, 해당 쿼리는 **Record Lock**만 걸린다. 예를 들어, `id`가 **Unique Index**일 때 `SELECT * FROM child WHERE id = 100;`은 `id = 100`에만 **Record Lock**을 걸며, 다른 트랜잭션이 `id = 99` 등의 값을 삽입하는 것은 허용된다.
 
-반면에, `id`가 **Index**가 아니거나 **Non-Unique Index**인 경우 **Gap Lock**이 사용되어 이전 간격인 100보다 작은 100 이하 값의 삽입이 모두 차단된다.
+반면, **Non-Unique Index**나 **Index**가 없는 경우, **Gap Lock**이 적용되어 100보다 작은 값의 삽입이 차단된다.
 
-여기서 주목할 점은 서로 다른 트랜잭션이 동일한 간격에 대해 충돌하는 잠금을 가질 수 있다는 것이다. 예를 들어, 트랜잭션 A가 1~100 사이에 대한 Gap S-Lock을 설정하고, 트랜잭션 B가 동일한 간격에 대해 Gap X-Lock을 설정할 수 있다. 충돌이 허용되는 이유는 인덱스에서 레코드가 삭제되면 서로 다른 트랜잭션이 보유한 Gap Lock을 병합해야 하기 때문이다.
+InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 새로운 레코드를 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. S Gap Lock은 같은 구간에 대해 여러 개가 존재할 수 있지만, X Gap Lock이 같은 구간에 대해 생성될 경우 다른 Gap Lock은 공존할 수 없다.
 
-InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. 한 트랜잭션이 보유한 Gap Lock은 다른 트랜잭션이 동일한 간격에 대해 Gap Lock을 획득하는 것을 방해하지 않는다. Gap S-Lock과 Gap X-Lock 간에 차이는 없으며, 이들은 서로 충돌하지 않고 동일한 기능을 수행한다.
+`READ COMMITTED` 격리 레벨에서는 **Gap Locking**이 비활성화되어, 검색 및 인덱스 스캔 시에는 적용되지 않으며, 외래 키 제약 조건과 중복 키 검사에 대해서만 사용된다.
 
-트랜잭션 격리 레벨을 `READ COMMITTED`로 변경할 경우 검색 및 인덱스 스캔에 대해 Gap Locking이 비활성화되며, 외래 키 제약 조건 검사 및 중복 키 검사에 대해서만 사용된다.
-
-`READ COMMITTED` 격리 수준을 사용할 때 다른 효과도 있다. 일치하지 않는 레코드에 대한 Record Lock은 MySQL이 WHERE 조건을 평가한 후 해제된다. `UPDATE`에 대해 InnoDB는 **반일관성(semi-consistent)** 읽기를 수행하여 가장 최근에 커밋된 버전을 MySQL에 반환하여 MySQL이 해당 레코드가 UPDATE의 WHERE 조건과 일치하는지 확인할 수 있도록 한다.
-
+또한, 이 격리 수준에서는 `WHERE` 조건에 맞지 않는 레코드에 걸린 **Record Lock**이 조건을 확인한 후 바로 해제된다. `UPDATE`를 수행할 때, InnoDB는 **반일관성(semi-consistent)** 읽기를 통해 가장 최근에 커밋된 데이터를 MySQL에 제공하고, MySQL은 그 데이터를 이용해 해당 레코드가 `WHERE` 조건과 일치하는지 확인한다.
 ## Next-Key Locks (다음 키 잠금)
 **Next-Key Lock**은 Index 레코드에 대한 Record Lock과 그 Index 레코드 앞 간격에 대한 Gap Lock의 조합이다.
 
