@@ -47,28 +47,25 @@ RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
 
 InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 새로운 레코드를 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. S Gap Lock은 같은 구간에 대해 여러 개가 존재할 수 있지만, X Gap Lock이 같은 구간에 대해 생성될 경우 다른 Gap Lock은 공존할 수 없다.
 
-`READ COMMITTED` 격리 레벨에서는 **Gap Locking**이 비활성화되어, 검색 및 인덱스 스캔 시에는 적용되지 않으며, 외래 키 제약 조건과 중복 키 검사에 대해서만 사용된다.
+`READ COMMITTED` 격리 벨에서는 **Gap Locking**이 비활성화되어, 검색 및 인덱스 스캔 시에는 적용되지 않으며, 외래 키 제약 조건과 중복 키 검사에 대해서만 사용된다.
 
 또한, 이 격리 수준에서는 `WHERE` 조건에 맞지 않는 레코드에 걸린 **Record Lock**이 조건을 확인한 후 바로 해제된다. `UPDATE`를 수행할 때, InnoDB는 **반일관성(semi-consistent)** 읽기를 통해 가장 최근에 커밋된 데이터를 MySQL에 제공하고, MySQL은 그 데이터를 이용해 해당 레코드가 `WHERE` 조건과 일치하는지 확인한다.
 ## Next-Key Locks (다음 키 잠금)
 **Next-Key Lock**은 Index 레코드에 대한 Record Lock과 그 Index 레코드 앞 간격에 대한 Gap Lock의 조합이다.
 
-InnoDB는 테이블 Index를 검색하거나 스캔할 때, 만나는 Index 레코드에 대해 S-Lock, X-Lock을 설정하여 행 수준의 잠금을 수행한다. 따라서 행 수준의 잠금은 실제로 Index Record Lock이다. Index 레코드에 대한 Next-Key Lock은 해당 Index 레코드 앞의 간격에도 영향을 미친다. 즉, Next-Key Lock은 Index Record Lock과 그 Index 레코드 앞의 Gap Lock을 포함한다. 한 트랜잭션이 Index에서 레코드 R에 대해 S-Lock, X-Lock을 보유하고 있다면, 다른 트랜잭션은 인덱스 순서에서 R 앞의 간격에 새로운 Index 레코드를 삽입할 수 없다.
+InnoDB는 테이블의 인덱스를 검색하거나 스캔할 때, 각 인덱스 레코드에 S-Lock 또는 X-Lock을 걸어 행 수준의 잠금을 수행한다. 즉, 행 수준의 잠금은 실제로 인덱스 레코드 잠금(Index Record Lock)이다. 또한, Next-Key Lock은 인덱스 레코드뿐만 아니라 그 앞의 간격에도 영향을 미친다. 다시 말해, Next-Key Lock은 인덱스 레코드 잠금과 해당 레코드 앞의 간격에 대한 갭 잠금(Gap Lock)을 포함한다. 한 트랜잭션이 인덱스에서 레코드 R에 S-Lock 또는 X-Lock을 걸고 있다면, 다른 트랜잭션은 인덱스 순서상 R 앞의 간격에 새로운 인덱스 레코드를 삽입할 수 없다.
 
-예를 들어, Index가 10, 11, 13, 20의 값을 포함한다고 가정하면, 이 Index에 대한 가능한 Next-Key Lock은 다음과 같은 간격을 포함한다. 원형 괄호는 구간 끝점을 제외하고, 대괄호는 끝점을 포함한다.
+id가 10, 11, 13, 20인 4개의 인덱스 레코드가 있을 때, InnoDB의 Next-Key Lock이 설정될 수 있는 구간은 다음과 같다. 각 구간은 새로운 레코드가 삽입될 수 없는 범위를 의미한다. 원형 괄호는 구간 끝점을 제외하고, 대괄호는 끝점을 포함한다.
 ```
-(negative infinity, 10] 
-(10, 11]
-(11, 13]
-(13, 20]
-(20, positive infinity)
+(-∞, 10]  // 음의 무한대부터 10까지
+(10, 11]  // 10과 11 사이
+(11, 13]  // 11과 13 사이
+(13, 20]  // 13과 20 사이
+(20, ∞)   // 20 이후부터 양의 무한대까지
 ```
+마지막 간격의 Next-Key Lock은 인덱스의 가장 큰 값 위의 간격을 잠그고, 실제로 존재하는 어떤 값보다 큰 가상의 레코드인 초과(superum)를 잠근다. 초과는 실제 인덱스 레코드가 아니기 때문에, 이 Next-Key Lock은 효과적으로 가장 큰 인덱스 값 다음의 간격만 잠근다고 보면 된다.
 
-마지막 간격의 경우, Next-Key Lock은 Index의 가장 큰 값 위의 간격과 Index에 실제로 존재하는 어떤 값보다 높은 초과(superum)
-
- 가상의 레코드를 잠근다. 초과는 실제 인덱스 레코드가 아니므로, 효과적으로 이 Next-Key Lock은 가장 큰 Index 값 다음의 간격만 잠근다.
-
-기본적으로 InnoDB는 **REPEATABLE READ** 트랜잭션 격리 수준에서 작동한다. 이 경우 InnoDB는 검색 및 Index 스캔에 대해 Next-Key Lock을 사용하여 팬텀 레코드를 방지한다.
+기본적으로 InnoDB는 트랜잭션 격리 레벨은 **REPEATABLE READ**이다. 이 경우 InnoDB는 검색 및 Index 스캔에 대해 Next-Key Lock을 사용하여 팬텀 리드를 방지한다.
 
 Lock 상태 확인을 해보면 아래와 같이 나온다.
 ```sql
@@ -83,7 +80,7 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
 ```
 
 ## Insert Intention Locks (의도 잠금 삽입)
-**Insert Intention Lock**은 행 삽입 전에 설정되는 Gap Lock의 일종이다. 이 Lock은 같은 Index 간격에 여러 트랜잭션이 삽입할 때, 서로 같은 위치에 삽입하지 않는다면 대기할 필요가 없음을 나타낸다. 예를 들어, Index 레코드가 4와 7이 있다고 가정했을 때, 각각 5와 6을 삽입하려는 별도의 트랜잭션은 삽입하기 전에 4와 7 사이의 간격을 Insert Intention Lock으로 잠그게 되며, 서로 충돌하지 않기 때문에 대기하지 않는다.
+**Insert Intention Lock**은 Insert할 때 설정되는 Gap Lock의 일종이다. 이 Lock은 같은 Index 간격에 여러 트랜잭션이 삽입할 때 서로 같은 위치에 삽입하지 않는다면 대기할 필요가 없음을 나타낸다. 예를 들어, Index 레코드가 4와 7이 있다고 가정했을 때, 각각 5와 6을 삽입하려는 별도의 트랜잭션은 삽입하기 전에 4와 7 사이의 간격을 Insert Intention Lock으로 잠그게 되며, 서로 충돌하지 않기 때문에 대기하지 않는다.
 
 다음 예시는 Insert Intention Lock을 설정한 후에 삽입된 레코드에 대해 X-Lock을 얻는 트랜잭션을 보여준다. 이 예시에는 두 클라이언트 A와 B가 포함된다.
 
