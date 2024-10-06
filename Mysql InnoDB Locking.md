@@ -47,9 +47,9 @@ RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
 
 여기서 주목할 점은 서로 다른 트랜잭션이 동일한 간격에 대해 충돌하는 잠금을 가질 수 있다는 것이다. 예를 들어, 트랜잭션 A가 1~100 사이에 대한 Gap S-Lock을 설정하고, 트랜잭션 B가 동일한 간격에 대해 Gap X-Lock을 설정할 수 있다. 충돌이 허용되는 이유는 인덱스에서 레코드가 삭제되면 서로 다른 트랜잭션이 보유한 Gap Lock을 병합해야 하기 때문이다.
 
-InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)**로, 다른 트랜잭션이 간격에 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. 한 트랜잭션이 보유한 Gap Lock은 다른 트랜잭션이 동일한 간격에 대해 Gap Lock을 획득하는 것을 방해하지 않는다. Gap S-Lock과 Gap X-Lock 간에 차이는 없으며, 이들은 서로 충돌하지 않고 동일한 기능을 수행한다.
+InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. 한 트랜잭션이 보유한 Gap Lock은 다른 트랜잭션이 동일한 간격에 대해 Gap Lock을 획득하는 것을 방해하지 않는다. Gap S-Lock과 Gap X-Lock 간에 차이는 없으며, 이들은 서로 충돌하지 않고 동일한 기능을 수행한다.
 
-Gap Locking은 명시적으로 비활성화할 수 있다. 이는 트랜잭션 격리 수준을 `READ COMMITTED`로 변경할 경우 발생한다. 이 경우, Gap Locking은 검색 및 인덱스 스캔에 대해 비활성화되며, 외래 키 제약 조건 검사 및 중복 키 검사에 대해서만 사용된다.
+트랜잭션 격리 레벨을 `READ COMMITTED`로 변경할 경우 검색 및 인덱스 스캔에 대해 Gap Locking이 비활성화되며, 외래 키 제약 조건 검사 및 중복 키 검사에 대해서만 사용된다.
 
 `READ COMMITTED` 격리 수준을 사용할 때 다른 효과도 있다. 일치하지 않는 레코드에 대한 Record Lock은 MySQL이 WHERE 조건을 평가한 후 해제된다. `UPDATE`에 대해 InnoDB는 **반일관성(semi-consistent)** 읽기를 수행하여 가장 최근에 커밋된 버전을 MySQL에 반환하여 MySQL이 해당 레코드가 UPDATE의 WHERE 조건과 일치하는지 확인할 수 있도록 한다.
 
