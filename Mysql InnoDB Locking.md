@@ -37,23 +37,23 @@ RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
 ```
 
 ## Gap Lock (간격 잠금)
-**Gap Lock**은 인덱스의 특정 간격이나 이전 간격에 대한 잠금이다. S-Lock과 X-Lock을 통해 설정된다.
+**Gap Lock**은 인덱스의 특정 간격이나 그 사이에 대한 잠금이다. 주로 **X-Lock** 을 통해 설정되며, **S-Lock** 과 함께 사용되기도 한다. **Gap Lock**의 주된 목적은 **순수한 방지(purely inhibitive)** 로, 트랜잭션 중에 **레코드 간격(갭)에 새로운 레코드가 삽입되는 것을 방지**하는 것이다.
 
-예를 들어, `SELECT c1 FROM t WHERE c1 BETWEEN 10 AND 20 FOR UPDATE;` 쿼리를 실행하면, 다른 트랜잭션이 열 `t.c1`에 값 15를 삽입하지 못하게 된다.
+예를 들어, `SELECT c1 FROM t WHERE c1 BETWEEN 10 AND 20 FOR UPDATE;` 쿼리를 실행하면, `c1` 값이 10에서 20 사이에 있는 레코드들은 물론, 그 사이의 **빈 공간(갭)** 에도 잠금이 걸리기 때문에 다른 트랜잭션이 열 `t.c1`에 값 15를 삽입하지 못하게 된다.
 
-**Gap Locking**은 Unique Index를 사용하는 단일 레코드 조회 시 필요하지 않으며, 해당 쿼리는 **Record Lock**만 걸린다. 예를 들어, `id`가 **PK**이거나 **Unique Index**일 때 `SELECT * FROM child WHERE id = 100;`은 `id = 100`에만 **Record Lock**을 걸며, 다른 트랜잭션이 `id = 99` 등의 값을 삽입하는 것은 허용된다.
+**Gap Locking**은 **Unique Index**를 사용하는 **단일 레코드 조회** 시에는 필요하지 않으며, 이 경우에는 **Record Lock**만 걸린다. 예를 들어, `id`가 **PK(Primary Key)** 이거나 **Unique Index**일 때 `SELECT * FROM child WHERE id = 100 FOR UPDATE;`는 `id = 100`에만 **Record Lock**을 걸며, `id = 99`나 `id = 101`과 같은 값의 삽입은 허용된다. 이는 고유 인덱스가 특정 레코드를 정확히 지정할 수 있기 때문에, 추가적인 범위 잠금(Gap Lock)이 필요하지 않기 때문이다.
 
-반면, **Non-Unique Secondary Index**나 **Index**가 없는 경우, 항상 **Next-Key Lock**이 적용되어 100 이하 보다 작은 값의 삽입이 차단된다.
+반면, **Non-Unique Secondary Index**나 **인덱스가 없는 경우**에는 항상 **Next-Key Lock**이 적용된다. 이 경우 **Record Lock**과 **Gap Lock**이 결합된 **Next-Key Lock**이 걸리기 때문에, 해당 범위 내에서 새로운 레코드를 삽입하는 것이 차단된다. 예를 들어, `SELECT * FROM t WHERE c1 = 100 FOR UPDATE;`와 같은 쿼리는 `c1 = 100`인 레코드와 그 앞뒤의 간격에 **Next-Key Lock**이 걸려, 100 이하의 값에 대한 새로운 레코드 삽입이 차단된다.
 
-InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 새로운 레코드를 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. S Gap Lock은 같은 구간에 대해 여러 개가 존재할 수 있지만, X Gap Lock이 같은 구간에 대해 생성될 경우 다른 Gap Lock은 공존할 수 없다.
+하지만 **Gap Lock**은 **공존**할 수 있다. **S Gap Lock**은 같은 구간에 대해 여러 개가 존재할 수 있지만, **X Gap Lock**이 같은 구간에 걸리게 되면, 다른 트랜잭션에서 동일한 구간에 **Gap Lock**을 걸 수 없다. 즉, **S Gap Lock**은 중복 허용이 가능하지만, **X Gap Lock**은 독점적이다.
 
-`READ COMMITTED` 격리 벨에서는 **Gap Locking**이 비활성화되어, 검색 및 인덱스 스캔 시에는 적용되지 않으며, 외래 키 제약 조건과 중복 키 검사에 대해서만 사용된다.
+또한, `READ COMMITTED` 격리 수준에서는 **Gap Locking**이 비활성화된다. 이 격리 수준에서는 검색 및 인덱스 스캔 시 **Gap Lock**이 적용되지 않으며, 오직 **외래 키 제약 조건**이나 **중복 키 검사** 시에만 사용된다. 이는 **REPEATABLE READ** 격리 수준과 차이가 있으며, `READ COMMITTED`에서는 팬텀 리드를 방지하지 않기 때문이다.
 
-또한, 이 격리 수준에서는 `WHERE` 조건에 맞지 않는 레코드에 걸린 **Record Lock**이 조건을 확인한 후 바로 해제된다. `UPDATE`를 수행할 때, InnoDB는 **반일관성(semi-consistent)** 읽기를 통해 가장 최근에 커밋된 데이터를 MySQL에 제공하고, MySQL은 그 데이터를 이용해 해당 레코드가 `WHERE` 조건과 일치하는지 확인한다.
+그리고 `READ COMMITTED` 격리 수준에서 InnoDB는 `WHERE` 조건에 맞지 않는 레코드에 대해 설정된 **Record Lock**을 조건을 확인한 후 바로 해제한다. 예를 들어, `UPDATE`를 수행할 때 InnoDB는 **반일관성(semi-consistent)** 읽기를 통해 가장 최근에 커밋된 데이터를 MySQL에 제공하고, MySQL은 그 데이터를 이용해 해당 레코드가 `WHERE` 조건과 일치하는지 확인한 후, 조건에 맞지 않는 레코드에 걸린 잠금을 해제한다.
 ## Next-Key Locks (다음 키 잠금)
 **Next-Key Lock**은 Index 레코드에 대한 Record Lock과 그 Index 레코드 앞 간격에 대한 Gap Lock의 조합이다.
 
-InnoDB는 테이블의 인덱스를 검색하거나 스캔할 때, 각 인덱스 레코드에 S-Lock 또는 X-Lock을 걸어 행 수준의 잠금을 수행한다. 즉, 행 수준의 잠금은 실제로 인덱스 레코드 잠금(Index Record Lock)이다. 또한, Next-Key Lock은 인덱스 레코드뿐만 아니라 그 앞의 간격에도 영향을 미친다. 다시 말해, Next-Key Lock은 인덱스 레코드 잠금과 해당 레코드 앞의 간격에 대한 갭 잠금(Gap Lock)을 포함한다. 한 트랜잭션이 인덱스에서 레코드 R에 S-Lock 또는 X-Lock을 걸고 있다면, 다른 트랜잭션은 인덱스 순서상 R 앞의 간격에 새로운 인덱스 레코드를 삽입할 수 없다.
+InnoDB는 테이블의 인덱스를 검색하거나 스캔할 때, 각 인덱스 레코드에 S-Lock 또는 X-Lock을 걸어 행 수준의 잠금을 수행한다. 즉, 행 수준의 잠금은 실제로 Index Record Lock이다. 또한, Next-Key Lock은 인덱스 레코드뿐만 아니라 그 앞의 간격에도 영향을 미친다. 다시 말해, Next-Key Lock은 인덱스 레코드 잠금과 해당 레코드 앞의 간격에 대한 Gap Lock을 포함한다. 한 트랜잭션이 인덱스에서 레코드 R에 S-Lock 또는 X-Lock을 걸고 있다면, 다른 트랜잭션은 인덱스 순서상 R 앞의 간격에 새로운 인덱스 레코드를 삽입할 수 없다.
 
 id가 10, 11, 13, 20인 4개의 인덱스 레코드가 있을 때, InnoDB의 Next-Key Lock이 설정될 수 있는 구간은 다음과 같다. 각 구간은 새로운 레코드가 삽입될 수 없는 범위를 의미한다. 원형 괄호는 구간 끝점을 제외하고, 대괄호는 끝점을 포함한다.
 ```
@@ -80,7 +80,7 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
 ```
 
 ## Insert Intention Locks (의도 잠금 삽입)
-**Insert Intention Lock**은 Insert할 때 설정되는 Gap Lock의 일종이다. 이 Lock은 같은 Index 간격에 여러 트랜잭션이 삽입할 때 서로 같은 위치에 삽입하지 않는다면 대기할 필요가 없음을 나타낸다. 예를 들어, Index 레코드가 4와 7이 있다고 가정했을 때, 각각 5와 6을 삽입하려는 별도의 트랜잭션은 삽입하기 전에 4와 7 사이의 간격을 Insert Intention Lock으로 잠그게 되며, 서로 충돌하지 않기 때문에 대기하지 않는다.
+**Insert Intention Lock**은 Insert할 때 설정되는 Gap Lock의 일종이다. 삽입하려는 레코드의 Index 범위에 Gap Lock이 걸려 있다면 Gap Lock이 해제될 때까지 Insert는 대기해야 한다. 이 때 대기할 때 여러 트랜잭션이 충돌될 수 있으니 Gap Lock이 해지될 때 Insert될 순서를 조율하기 위해 사용되는 Lock이다.
 
 다음 예시는 Insert Intention Lock을 설정한 후에 삽입된 레코드에 대해 X-Lock을 얻는 트랜잭션을 보여준다. 이 예시에는 두 클라이언트 A와 B가 포함된다.
 
