@@ -41,9 +41,9 @@ RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
 
 예를 들어, `SELECT c1 FROM t WHERE c1 BETWEEN 10 AND 20 FOR UPDATE;` 쿼리를 실행하면, 다른 트랜잭션이 열 `t.c1`에 값 15를 삽입하지 못하게 된다.
 
-**Gap Locking**은 Unique Index를 사용하는 단일 레코드 조회 시 필요하지 않으며, 해당 쿼리는 **Record Lock**만 걸린다. 예를 들어, `id`가 **Unique Index**일 때 `SELECT * FROM child WHERE id = 100;`은 `id = 100`에만 **Record Lock**을 걸며, 다른 트랜잭션이 `id = 99` 등의 값을 삽입하는 것은 허용된다.
+**Gap Locking**은 Unique Index를 사용하는 단일 레코드 조회 시 필요하지 않으며, 해당 쿼리는 **Record Lock**만 걸린다. 예를 들어, `id`가 **PK**이거나 **Unique Index**일 때 `SELECT * FROM child WHERE id = 100;`은 `id = 100`에만 **Record Lock**을 걸며, 다른 트랜잭션이 `id = 99` 등의 값을 삽입하는 것은 허용된다.
 
-반면, **Non-Unique Index**나 **Index**가 없는 경우, **Gap Lock**이 적용되어 100보다 작은 값의 삽입이 차단된다.
+반면, **Non-Unique Secondary Index**나 **Index**가 없는 경우, 항상 **Next-Key Lock**이 적용되어 100 이하 보다 작은 값의 삽입이 차단된다.
 
 InnoDB의 Gap Lock의 유일한 목적은 **순수한 방지(purely inhibitive)** 로, 다른 트랜잭션이 간격에 새로운 레코드를 삽입하는 것을 방지하는 것이다. 하지만 Gap Lock은 공존할 수 있다. S Gap Lock은 같은 구간에 대해 여러 개가 존재할 수 있지만, X Gap Lock이 같은 구간에 대해 생성될 경우 다른 Gap Lock은 공존할 수 없다.
 
