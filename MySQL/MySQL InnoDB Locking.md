@@ -129,9 +129,10 @@ InnoDB는 공간 데이터가 포함된 열에 대해 **SPATIAL** 인덱싱을 �
 
 ## Lock 상태 확인 방법
 ```sql
-SHOW ENGINE INNODB STATUS
-```
+SHOW ENGINE INNODB STATUS; // innoDB 상세 정보
 
+SELECT * FROM performance_schema.data_locks; // 걸려잇는 락 확인
+```
 ## 이 글의 작성 기준
 - [MySQL InnoDB Locking 8.4 Document](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html)에 소개된 공식 문서 내용을 토대로 이해한 내용을 정리한다.
 - 어색한 영단어는 의역해서 본인이 이해하기 쉬운 방향으로 정리한다.
