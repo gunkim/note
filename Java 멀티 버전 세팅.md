@@ -1,3 +1,4 @@
+## by Mac
 ### 필요한 jdk 버전 설치
 
 추가 버전에 대한 패키지 명은 [이곳](https://github.com/mdogan/homebrew-zulu?tab=readme-ov-file)에서 확인
@@ -32,3 +33,17 @@ alias ch-java-11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); export PATH=
 alias ch-java-17='export JAVA_HOME=$(/usr/libexec/java_home -v 17); export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$JAVA_HOME"'
 alias ch-java-21='export JAVA_HOME=$(/usr/libexec/java_home -v 21); export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$JAVA_HOME"'
 ```
+## by Arch Linux
+~~~sh
+# install jdk
+sudo pacman -S jdk21-openjdk
+sudo pacman -S jdk17-openjdk
+sudo pacman -S jdk8-openjdk
+
+# 설치된 jdk 확인
+archlinux-java status
+
+# jdk 전환
+sudo archlinux-java set {변경할 jdk 버전}
+sudo archlinux-java set java-17-openjdk
+~~~
