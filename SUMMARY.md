@@ -6,6 +6,8 @@
     * [MySQL MVCC(Multi-Version Concurrency Control)](readme/mysql/mysql-mvcc-multi-version-concurrency-control.md)
     * [MySQL Undo Log, Redo Log](readme/mysql/mysql-undo-log-redo-log.md)
     * [비관적 락 vs 낙관적 락](readme/mysql/vs.md)
+  * [AI](readme/ai/README.md)
+    * [MCP(Model Context Protocal)](readme/ai/mcp-model-context-protocal.md)
 
 ## 독서 <a href="#study" id="study"></a>
 
